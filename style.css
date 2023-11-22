@@ -30,10 +30,25 @@ button {
     justify-content: center;
 }
 
-.reset {
+.reset,
+#clickHere {
     margin-top: 8px;
-    margin-left: 5px;
+    margin-left: 8px;
     height: 15px;
     cursor: pointer;
     font-size: 30px;
+}
+
+.modal {
+    background-color: black;
+    color: white;
+    width: 50%;
+    margin-left: 25%;
+    padding: 20px;
+    border-radius: 20px;
+    display: none;
+}
+
+.theme {
+    margin-top: 10px;
 }

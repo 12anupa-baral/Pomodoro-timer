@@ -12,6 +12,25 @@
 </head>
 
 <body>
+
+    <main>
+        <div id="container">
+            <section class="modalContainer">
+
+                <div id="modal" class="modal">
+                    <h3>General Settings</h3>
+                    <label for="">Theme </label>
+                    <div class="theme">
+                        <input type="radio">Dark</input>
+                        <input type="radio">White</input>
+                    </div>
+
+
+                </div>
+            </section>
+
+        </div>
+    </main>
     <div id="timer-container">
 
         <div id="timer-container">
@@ -24,6 +43,8 @@
             <div class="down">
                 <button class="start" onclick="startTimer()">Start</button>
                 <div class="reset" onclick="resetTimer()"><a><i class='fa-solid fa-arrow-rotate-right'></i></a></div>
+                <div id="clickHere" onclick="theme()"><a><i class='fa fa-cog'></i></a></div>
+
             </div>
         </div>
 
