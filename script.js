@@ -2,38 +2,39 @@ let timer;
 let minutes = 25;
 let seconds = 0;
 let isPaused = true;
+let lastClickedButton = "";
 
-function startTimer() {
-  if (!timer) {
-    timer = setInterval(updateTimer, 1000);
-  }
-  isPaused = false;
-  updateButtonState();
-}
-
-function restartTimer() {
+function displayTime(duration) {
   clearInterval(timer);
   timer = null;
   isPaused = true;
-  minutes = 25;
+  minutes = duration;
   seconds = 0;
   updateDisplay();
-  updateButtonState();
 }
 
-function toggleTimer() {
+function startPomodoro() {
+  displayTime(25);
+}
+
+function shortBreak() {
+  displayTime(5);
+}
+
+function longBreak() {
+  displayTime(10);
+}
+
+function startTimer() {
   if (isPaused) {
-    startTimer();
+    timer = setInterval(updateTimer, 1000);
+    isPaused = false;
   } else {
-    pauseTimer();
+    clearInterval(timer);
+    isPaused = true;
   }
-  updateButtonState();
-}
 
-function pauseTimer() {
-  clearInterval(timer);
-  timer = null;
-  isPaused = true;
+  updateButtonState();
 }
 
 function updateTimer() {
@@ -45,9 +46,52 @@ function updateTimer() {
   } else {
     clearInterval(timer);
     timer = null;
+    chooseTimer();
   }
 
   updateDisplay();
+}
+
+function resetTimer() {
+  clearInterval(timer);
+  timer = null;
+  isPaused = true;
+
+  switch (lastClickedButton) {
+    case "pomodoro":
+      startPomodoro();
+      break;
+    case "shortBreak":
+      shortBreak();
+      break;
+    case "longBreak":
+      longBreak();
+      break;
+    default:
+      startPomodoro();
+      break;
+  }
+
+  seconds = 0;
+  updateDisplay();
+  updateButtonState();
+}
+
+function chooseTimer() {
+  switch (lastClickedButton) {
+    case "pomodoro":
+      startPomodoro();
+      break;
+    case "shortBreak":
+      shortBreak();
+      break;
+    case "longBreak":
+      longBreak();
+      break;
+    default:
+      startPomodoro();
+      break;
+  }
 }
 
 function updateDisplay() {
@@ -59,12 +103,27 @@ function updateDisplay() {
 }
 
 function updateButtonState() {
-  const startButton = document.querySelector("button:nth-of-type(1)");
-  const restartButton = document.querySelector("button:nth-of-type(2)");
-  const toggleButton = document.querySelector("button:nth-of-type(3)");
-
-  startButton.disabled = !isPaused;
-  restartButton.disabled = isPaused;
-
-  toggleButton.innerText = isPaused ? "Resume" : "Pause";
+  const pomodoroButton = document.querySelector(".start");
+  pomodoroButton.innerText = isPaused ? "Start" : "Pause";
 }
+
+document.querySelector(".pomodoro-btn").addEventListener("click", function () {
+  lastClickedButton = "pomodoro";
+  resetTimer();
+});
+
+document
+  .querySelector(".short-break-btn")
+  .addEventListener("click", function () {
+    lastClickedButton = "shortBreak";
+    resetTimer();
+  });
+
+document
+  .querySelector(".long-break-btn")
+  .addEventListener("click", function () {
+    lastClickedButton = "longBreak";
+    resetTimer();
+  });
+
+updateDisplay();

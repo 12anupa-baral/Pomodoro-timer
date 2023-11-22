@@ -4,17 +4,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Pomodoro Timer</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
 </head>
 
 <body>
-    <div id="timer">25:00</div>
-    <button onclick="startTimer()">Start</button>
-    <button onclick="restartTimer()">Restart</button>
-    <button onclick="toggleTimer()">Pause</button>
+    <div id="timer-container">
 
+        <div id="timer-container">
+            <div id="buttons">
+                <button class="pomodoro-btn" onclick="setLastClickedButton('pomodoro')">Pomodoro</button>
+                <button class="short-break-btn" onclick="setLastClickedButton('shortBreak')">Short Break</button>
+                <button class="long-break-btn" onclick="setLastClickedButton('longBreak')">Long Break</button>
+            </div>
+            <div id="timer">25:00</div>
+            <div class="down">
+                <button class="start" onclick="startTimer()">Start</button>
+                <div class="reset" onclick="resetTimer()"><a><i class='fa-solid fa-arrow-rotate-right'></i></a></div>
+            </div>
+        </div>
+
+        <script src="script.js"></script>
 </body>
 
 </html>

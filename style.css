@@ -2,12 +2,15 @@ body {
     font-family: Arial, sans-serif;
     text-align: center;
     margin: 10%;
-
+    background-image: url("assets/ken-cheung-0F2nvpob0_c-unsplash.jpg");
+    background-size: cover;
+    color: white;
 }
 
 
 #timer {
-    font-size: 36px;
+    font-size: 100px;
+    font-weight: bold;
     margin-bottom: 20px;
 }
 
@@ -16,4 +19,21 @@ button {
     padding: 10px 20px;
     margin: 5px;
     cursor: pointer;
+    border-radius: 10px;
+    border: 1px solid white;
+    background-color: transparent;
+    color: white;
+}
+
+.down {
+    display: flex;
+    justify-content: center;
+}
+
+.reset {
+    margin-top: 8px;
+    margin-left: 5px;
+    height: 15px;
+    cursor: pointer;
+    font-size: 30px;
 }
